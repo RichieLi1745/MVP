@@ -1,0 +1,5 @@
+.env
+node_modules
+client/dist/14.4.1
+client/node_modules
+
