@@ -2,9 +2,11 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const axios = require('axios');
+const dotenv = require('dotenv');
+dotenv.config();
 //routes
 app.use(express.static('client/dist'));
-const token = 'RGAPI-72133fd9-36f3-443e-9b5b-9a8df01fb870';
+const token = process.env.RIOT_GAME_TOKEN;
 
 //SUMMONER INFO ROUTE
 app.get('/summoner/:name', (req, res) => {
@@ -28,7 +30,17 @@ app.get('/ranked/:id', (req, res) => {
 } );
 //MATCHES ROUTE
 app.get('/matches/:puuid', (req, res) => {
-  axios.get(`https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/${req.params.puuid}/ids?count=20&api_key=${token}`)
+  axios.get(`https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/${req.params.puuid}/ids?count=10&api_key=${token}`)
+    .then((response) => {
+      res.send(response.data);
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+} );
+//MATCH INFO ROUTE
+app.get('/match/:matchId', (req, res) => {
+  axios.get(`https://americas.api.riotgames.com/tft/match/v1/matches/${req.params.matchId}?api_key=${token}`)
     .then((response) => {
       res.send(response.data);
     })
