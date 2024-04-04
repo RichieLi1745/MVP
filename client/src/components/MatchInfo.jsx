@@ -4,7 +4,11 @@ export default function MatchInfo({ match, nameID }) {
   const [matchInfo, setMatchInfo] = useState([]);
   const [gameLength, setGameLength] = useState('');
   const [matchParticipants, setMatchParticipants] = useState([]);
-
+  const [isItemModalVisible, setIsItemModalVisible] = useState(false);
+  const [modalItem, setModalItem] = useState(null);
+  const [isChampionModalVisible, setIsChampionModalVisible] = useState(false);
+  const [modalChampion, setModalChampion] = useState(null);
+  const [timeoutId, setTimeoutId] = useState(null);
   useEffect(() => {
     axios.get(`/match/${match}`)
       .then((response) => {
@@ -27,7 +31,7 @@ export default function MatchInfo({ match, nameID }) {
 
       {matchParticipants && matchParticipants.map((participant) => {
         if(participant.puuid === nameID) {
-          console.log(participant);
+          //console.log(participant);
           return (
             <div className="champion-items-container" key={participant.puuid}>
 
@@ -35,20 +39,55 @@ export default function MatchInfo({ match, nameID }) {
               <h2>Game Length: {gameLength}</h2>
               <div className="champion-items">{participant.units.map((unit, index) => {
                 return (
-                <div className="champion-items-individual">
+                <div className="champion-items-individual"
+                >
                   {unit.character_id.split('_')[1] === 'WuKong' ?
-                  <img className="tft-champion" key={index} src={'/photos/WukongSquare.webp'} />
+                  <img className="tft-champion" key={index} src={'/photos/WukongSquare.webp'}
+                    onMouseEnter={() => {
+                      clearTimeout(timeoutId);
+                      setIsChampionModalVisible(true);
+                      setModalChampion(unit); }}
+                    onMouseLeave={() => {
+                      const id = setTimeout(() => setIsChampionModalVisible(false), 100);
+                      setTimeoutId(id);
+                    }}
+                  />
                   :
-                  <img className="tft-champion" key={index} src={`14.4.1/img/champion/${unit.character_id.split('_')[1]}.png`} />}
+                  <img className="tft-champion" key={index} src={`14.4.1/img/champion/${unit.character_id.split('_')[1]}.png`}
+                    onMouseEnter={() => {
+                      clearTimeout(timeoutId);
+                      setIsChampionModalVisible(true);
+                      setModalChampion(unit); }}
+                    onMouseLeave={() => {
+                      const id = setTimeout(() => setIsChampionModalVisible(false), 100);
+                      setTimeoutId(id);}}
+                  />}
+                  {isChampionModalVisible && modalChampion === unit &&
+                    <div className="champion-modal">
+                      <img src={`photos/champions/${modalChampion.character_id}.png`}
+                        onError={(e)=>{e.target.onerror = null; e.target.src="14.4.1/img/tft-item/TFT_Assist_TrainingDummy.png"}}
+                      />
+                    </div>
+                  }
 
                   <div className="tft-items">
                     {unit.itemNames && unit.itemNames.map((item, index) => {
                       return (
                         <div key={index}>
-                          <div className="tft-items-container">
+                          <div className="tft-items-container"
+                          onMouseEnter={() => {setIsItemModalVisible(true); setModalItem(item); }}
+                          onMouseLeave={() => setIsItemModalVisible(false)}
+                          >
                             <img  src={`14.4.1/img/tft-item/${item}.png`}
                             onError={(e)=>{e.target.onerror = null; e.target.src="14.4.1/img/tft-item/TFT_Assist_TrainingDummy.png"}}
                             />
+                            {isItemModalVisible && modalItem === item &&
+                              <div className="tft-items-modal">
+                                <img src={`photos/${modalItem}.png`}
+                                  onError={(e)=>{e.target.onerror = null; e.target.src="14.4.1/img/tft-item/TFT_Assist_TrainingDummy.png"}}
+                                />
+                              </div>
+                            }
                           </div>
                         </div>
 

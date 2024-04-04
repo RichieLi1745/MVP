@@ -32,7 +32,8 @@ const stats = () => {
   }, []);
   return (
     <div>
-      <div className="profile" >
+      <div className="name-rank-MatchInfo">
+        <div className="profile" >
 
         <div className="summonerName">
           <h2 className="summoner">{rankedInfo[0].summonerName}</h2>
@@ -40,26 +41,26 @@ const stats = () => {
 
         <div className="iconPlusWinLoss">
 
-          <div className= "iconPlusTierRank">
-            {icon && <img className="regalia" src={`14.4.1/img/tft-regalia/${icon}`} />}
+            <div className= "iconPlusTierRank">
+              {icon && <img className="regalia" src={`14.4.1/img/tft-regalia/${icon}`} />}
 
-            <div className="TierRankLP">
-              {icon && <h2>{tierProper} {rankedInfo[0].rank}</h2>}
-              {icon && <h2>{rankedInfo[0].leaguePoints} LP</h2>}
+              <div className="TierRankLP">
+                {icon && <h2>{tierProper} {rankedInfo[0].rank}</h2>}
+                {icon && <h2>{rankedInfo[0].leaguePoints} LP</h2>}
+              </div>
+
             </div>
 
-          </div>
-
-          <div className="WinLossWinRate ">
-            <h2>Wins: {rankedInfo[0].wins}</h2>
-            <h2>Losses: {rankedInfo[0].losses}</h2>
-            <h2>Winrate: {Math.round((rankedInfo[0].wins / (rankedInfo[0].wins + rankedInfo[0].losses)) * 100)}%</h2>
-          </div>
-
+            <div className="WinLossWinRate ">
+              <h2>Wins: {rankedInfo[0].wins}</h2>
+              <h2>Losses: {rankedInfo[0].losses}</h2>
+              <h2>Winrate: {Math.round((rankedInfo[0].wins / (rankedInfo[0].wins + rankedInfo[0].losses)) * 100)}%</h2>
+            </div>
         </div>
-      </div>
-      <div className="MatchInfo-title">
-        <h1>Match Info</h1>
+        </div>
+        <div className="MatchInfo-title">
+            <h1>Match Info</h1>
+        </div>
       </div>
       <div className="MatchInfo">
         {matches.map((match, index) => {
