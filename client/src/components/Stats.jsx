@@ -18,7 +18,7 @@ const stats = () => {
   const getMatches = async () => {
      await axios.get(`/matches/${puuid}`)
       .then((response) => {
-        console.log(response.data);
+        //console.log(response.data);
         setMatches(response.data);
       })
       .catch((error) => {
@@ -58,9 +58,12 @@ const stats = () => {
 
         </div>
       </div>
-      <div>
+      <div className="MatchInfo-title">
+        <h1>Match Info</h1>
+      </div>
+      <div className="MatchInfo">
         {matches.map((match, index) => {
-          return <MatchInfo key={index} match={match}/>
+          return <MatchInfo key={index} match={match} nameID={rankedInfo[0].puuid}/>
         })}
       </div>
     </div>

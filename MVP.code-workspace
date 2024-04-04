@@ -1,7 +1,12 @@
 {
 	"folders": [
 		{
+			"name": "MVP",
 			"path": "."
+		},
+		{
+			"name": "MVPS",
+			"path": "../MVPS"
 		}
 	],
 	"settings": {}
