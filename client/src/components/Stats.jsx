@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import MatchInfo from './MatchInfo.jsx';
 import axios from 'axios';
 const stats = () => {
@@ -8,6 +8,7 @@ const stats = () => {
   const location = useLocation();
   const rankedInfo = location.state.rankedInfo;
   const puuid = rankedInfo[0].puuid;
+  const navigate = useNavigate();
   const tierProper = rankedInfo[0].tier.charAt(0) + rankedInfo[0].tier.slice(1).toLowerCase();
 
   const getIcon = async () => {
@@ -32,6 +33,8 @@ const stats = () => {
   }, []);
   return (
     <div>
+      <button className="league-icon"onClick={() => navigate('/')}>
+      </button>
       <div className="name-rank-MatchInfo">
         <div className="profile" >
 

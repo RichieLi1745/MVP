@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 dotenv.config();
 //routes
 app.use(express.static('client/dist'));
+
 const token = process.env.RIOT_GAME_TOKEN;
 
 //SUMMONER INFO ROUTE
