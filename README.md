@@ -31,5 +31,5 @@ Start the application to your main browser by firing up the server and client.
 ```sh
 npm run server-dev
 
-```sh
+
 npm run client-dev
