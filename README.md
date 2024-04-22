@@ -26,8 +26,10 @@ Install required dependencies
 npm install
 ```
 
-Rename `exampleconfig.ts` to `config.ts`. Then fill in the API URL with your server connection.\
-Start the application to your main browser.
+Rename `example.env` to `.env`. Then fill in the file with your personal Riot Games Developer Token.\
+Start the application to your main browser by firing up the server and client.
 ```sh
-npm run start
-```
+npm run server-dev
+
+```sh
+npm run client-dev
