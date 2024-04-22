@@ -20,8 +20,8 @@ function App() {
         const id = response.data.id;
         axios.get(`/ranked/${id}`)
           .then((response) => {
-            //console.log('rankedInfo:' ,response.data);
-            navigate('/stats', { state: { rankedInfo: response.data } });
+            console.log('rankedInfo:' ,response.data);
+            navigate('/stats', { state: { rankedInfo: response.data, name: name } });
           })
           .catch((error) => {
             console.log(error);

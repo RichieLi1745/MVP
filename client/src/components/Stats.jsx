@@ -7,6 +7,7 @@ const stats = () => {
   const [matches, setMatches] = useState([]); // [match1, match2, match3, ...
   const location = useLocation();
   const rankedInfo = location.state.rankedInfo;
+  const name = location.state.name;
   const puuid = rankedInfo[0].puuid;
   const navigate = useNavigate();
   const tierProper = rankedInfo[0].tier.charAt(0) + rankedInfo[0].tier.slice(1).toLowerCase();
@@ -39,7 +40,7 @@ const stats = () => {
         <div className="profile" >
 
         <div className="summonerName">
-          <h2 className="summoner">{rankedInfo[0].summonerName}</h2>
+          <h2 className="summoner">{name}</h2>
         </div>
 
         <div className="iconPlusWinLoss">
