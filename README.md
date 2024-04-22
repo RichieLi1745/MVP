@@ -26,7 +26,9 @@ Install required dependencies
 npm install
 ```
 
-Rename `example.env` to `.env`. Then fill in the file with your personal Riot Games Developer Token.\
+Rename `example.env` to `.env`. \
+Head to the [Riot Games Developer website](https://developer.riotgames.com/) to sign-in and generate a new Riot Games Token.
+Then fill in the file with your token.\
 Start the application to your main browser by firing up the server and client.
 ```sh
 npm run server-dev
